@@ -93,16 +93,12 @@ void OS_LinuxBSD::alert(const String &p_alert, const String &p_title) {
 
 	String desktop = getenv("XDG_SESSION_DESKTOP");
 
-	if (desktop == NULL) {
-		program = "xmessage";
+	if (desktop == "GNOME") {
+		program = "zenity";
+	} else if (desktop == "KDE") {
+		program = "kdialog";
 	} else {
-		if (desktop == "GNOME") {
-			program = "zenity";
-		} else if (desktop == "KDE") {
-			program = "kdialog";
-		} else {
-			program = "xmessage";
-		}
+		program = "xmessage";
 	}
 
 	List<String> args;
