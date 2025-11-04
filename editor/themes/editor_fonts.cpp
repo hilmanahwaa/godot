@@ -154,15 +154,17 @@ void editor_register_fonts(const Ref<Theme> &p_theme) {
 	const int default_font_size = int(EDITOR_GET("interface/editor/main_font_size")) * EDSCALE;
 	const float embolden_strength = 0.6;
 
-	Ref<Font> default_font = load_internal_font(_font_Inter_Regular, _font_Inter_Regular_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false);
-	Ref<Font> default_font_msdf = load_internal_font(_font_Inter_Regular, _font_Inter_Regular_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, font_allow_msdf);
+	/*Ref<Font> default_font = load_internal_font(_font_Inter_Regular, _font_Inter_Regular_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false);
+	Ref<Font> default_font_msdf = load_internal_font(_font_Inter_Regular, _font_Inter_Regular_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, font_allow_msdf);*/
+	Ref<Font> default_font = load_internal_font(_font_TikTokSans_Regular, _font_TikTokSans_Regular_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false);
+	Ref<Font> default_font_msdf = load_internal_font(_font_TikTokSans_Regular, _font_TikTokSans_Regular_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, font_allow_msdf);
 
 	Dictionary default_features;
 	default_features["calt"] = false; // Disable contextual alternates by default.
 	default_features["ss04"] = true; // Serifed I, tailed l for better distinction.
 	default_features["tnum"] = true; // Tabular numbers for better alignment.
 
-	String noto_cjk_path;
+	/* String noto_cjk_path;
 	String noto_cjk_bold_path;
 	String var_suffix[] = { "HK", "KR", "SC", "TC", "JP" }; // Note: All Noto Sans CJK versions support all glyph variations, it should not match current locale.
 	for (size_t i = 0; i < std_size(var_suffix); i++) {
@@ -172,10 +174,11 @@ void editor_register_fonts(const Ref<Theme> &p_theme) {
 		if (noto_cjk_bold_path.is_empty()) {
 			noto_cjk_bold_path = OS::get_singleton()->get_system_font_path("Noto Sans CJK " + var_suffix[i], 800, 100);
 		}
-	}
+	} */
 
 	TypedArray<Font> fallbacks;
-	Ref<FontFile> arabic_font = load_internal_font(_font_Vazirmatn_Regular, _font_Vazirmatn_Regular_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false, &fallbacks);
+	/*Ref<FontFile> arabic_font = load_internal_font(_font_Vazirmatn_Regular, _font_Vazirmatn_Regular_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false, &fallbacks);*/
+	Ref<FontFile> arabic_font = load_internal_font(_font_NotoNaskhArabicUI_Regular, _font_NotoNaskhArabicUI_Regular_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false, &fallbacks);
 	Ref<FontFile> bengali_font = load_internal_font(_font_NotoSansBengaliUI_Regular, _font_NotoSansBengaliUI_Regular_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false, &fallbacks);
 	Ref<FontFile> devanagari_font = load_internal_font(_font_NotoSansDevanagariUI_Regular, _font_NotoSansDevanagariUI_Regular_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false, &fallbacks);
 	Ref<FontFile> georgian_font = load_internal_font(_font_NotoSansGeorgian_Regular, _font_NotoSansGeorgian_Regular_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false, &fallbacks);
@@ -186,19 +189,23 @@ void editor_register_fonts(const Ref<Theme> &p_theme) {
 	Ref<FontFile> tamil_font = load_internal_font(_font_NotoSansTamilUI_Regular, _font_NotoSansTamilUI_Regular_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false, &fallbacks);
 	Ref<FontFile> telugu_font = load_internal_font(_font_NotoSansTeluguUI_Regular, _font_NotoSansTeluguUI_Regular_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false, &fallbacks);
 	Ref<FontFile> thai_font = load_internal_font(_font_NotoSansThai_Regular, _font_NotoSansThai_Regular_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false, &fallbacks);
-	if (!noto_cjk_path.is_empty()) {
+	/*if (!noto_cjk_path.is_empty()) {
 		load_external_font(noto_cjk_path, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false, &fallbacks);
-	}
+	}*/
+	Ref<FontFile> cjk_font = load_internal_font(_font_NotoSansSC_Regular, _font_NotoSansSC_Regular_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false, &fallbacks);
 	Ref<FontFile> fallback_font = load_internal_font(_font_DroidSansFallback, _font_DroidSansFallback_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false, &fallbacks);
 	Ref<FontFile> japanese_font = load_internal_font(_font_DroidSansJapanese, _font_DroidSansJapanese_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false, &fallbacks);
 	default_font->set_fallbacks(fallbacks);
 	default_font_msdf->set_fallbacks(fallbacks);
 
-	Ref<FontFile> default_font_bold = load_internal_font(_font_Inter_Bold, _font_Inter_Bold_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false);
-	Ref<FontFile> default_font_bold_msdf = load_internal_font(_font_Inter_Bold, _font_Inter_Bold_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, font_allow_msdf);
+	/*Ref<FontFile> default_font_bold = load_internal_font(_font_Inter_Bold, _font_Inter_Bold_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false);
+	Ref<FontFile> default_font_bold_msdf = load_internal_font(_font_Inter_Bold, _font_Inter_Bold_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, font_allow_msdf);*/
+	Ref<FontFile> default_font_bold = load_internal_font(_font_TikTokSans_Bold, _font_TikTokSans_Bold_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false);
+	Ref<FontFile> default_font_bold_msdf = load_internal_font(_font_TikTokSans_Bold, _font_TikTokSans_Bold_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, font_allow_msdf);
 
 	TypedArray<Font> fallbacks_bold;
-	Ref<FontFile> arabic_font_bold = load_internal_font(_font_Vazirmatn_Bold, _font_Vazirmatn_Bold_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false, &fallbacks_bold);
+	/* Ref<FontFile> arabic_font_bold = load_internal_font(_font_Vazirmatn_Bold, _font_Vazirmatn_Bold_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false, &fallbacks_bold); */
+	Ref<FontFile> arabic_font_bold = load_internal_font(_font_NotoNaskhArabicUI_Bold, _font_NotoNaskhArabicUI_Bold_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false, &fallbacks_bold);
 	Ref<FontFile> bengali_font_bold = load_internal_font(_font_NotoSansBengaliUI_Bold, _font_NotoSansBengaliUI_Bold_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false, &fallbacks_bold);
 	Ref<FontFile> devanagari_font_bold = load_internal_font(_font_NotoSansDevanagariUI_Bold, _font_NotoSansDevanagariUI_Bold_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false, &fallbacks_bold);
 	Ref<FontFile> georgian_font_bold = load_internal_font(_font_NotoSansGeorgian_Bold, _font_NotoSansGeorgian_Bold_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false, &fallbacks_bold);
@@ -209,13 +216,14 @@ void editor_register_fonts(const Ref<Theme> &p_theme) {
 	Ref<FontFile> tamil_font_bold = load_internal_font(_font_NotoSansTamilUI_Bold, _font_NotoSansTamilUI_Bold_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false, &fallbacks_bold);
 	Ref<FontFile> telugu_font_bold = load_internal_font(_font_NotoSansTeluguUI_Bold, _font_NotoSansTeluguUI_Bold_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false, &fallbacks_bold);
 	Ref<FontFile> thai_font_bold = load_internal_font(_font_NotoSansThai_Bold, _font_NotoSansThai_Bold_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false, &fallbacks_bold);
-	if (!noto_cjk_bold_path.is_empty()) {
+	/* if (!noto_cjk_bold_path.is_empty()) {
 		load_external_font(noto_cjk_bold_path, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false, &fallbacks_bold);
-	}
+	} */
+	Ref<FontFile> cjk_font_bold = load_internal_font(_font_NotoSansSC_Bold, _font_NotoSansSC_Bold_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false, &fallbacks_bold);
 	Ref<FontVariation> fallback_font_bold = make_bold_font(fallback_font, embolden_strength, &fallbacks_bold);
 	Ref<FontVariation> japanese_font_bold = make_bold_font(japanese_font, embolden_strength, &fallbacks_bold);
 
-	if (OS::get_singleton()->has_feature("system_fonts")) {
+	/* if (OS::get_singleton()->has_feature("system_fonts")) {
 		PackedStringArray emoji_font_names = {
 			"Apple Color Emoji",
 			"Segoe UI Emoji",
@@ -227,7 +235,8 @@ void editor_register_fonts(const Ref<Theme> &p_theme) {
 		Ref<SystemFont> emoji_font = load_system_font(emoji_font_names, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false);
 		fallbacks.push_back(emoji_font);
 		fallbacks_bold.push_back(emoji_font);
-	}
+	} */
+	Ref<FontFile> emoji_font = load_internal_font(_font_NotoColorEmoji, _font_NotoColorEmoji_size, font_hinting, font_antialiasing, true, font_subpixel_positioning, font_disable_embedded_bitmaps, false, &fallbacks_bold);
 
 	default_font_bold->set_fallbacks(fallbacks_bold);
 	default_font_bold_msdf->set_fallbacks(fallbacks_bold);
