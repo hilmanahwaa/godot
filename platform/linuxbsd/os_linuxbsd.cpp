@@ -95,7 +95,7 @@ void OS_LinuxBSD::alert(const String &p_alert, const String &p_title) {
 		program = "zenity";
 	} else if (desktop == "KDE") {
 		program = "kdialog";
-    } else {
+	} else {
 		program = "xmessage";
 	}
 
