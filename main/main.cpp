@@ -203,7 +203,7 @@ static int audio_driver_idx = -1;
 
 static DisplayServer::AccessibilityMode accessibility_mode = DisplayServer::AccessibilityMode::ACCESSIBILITY_AUTO;
 static bool accessibility_mode_set = false;
-static bool single_window = false;
+static bool single_window = true;
 static bool editor = false;
 static bool project_manager = false;
 static bool cmdline_tool = false;
@@ -2895,7 +2895,7 @@ Error Main::setup2(bool p_show_boot_logo) {
 					String screen_property;
 
 					bool prefer_wayland_found = false;
-					bool prefer_wayland = false;
+					bool prefer_wayland = true;
 
 					bool tablet_found = false;
 
