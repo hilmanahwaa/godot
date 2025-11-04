@@ -91,12 +91,13 @@
 void OS_LinuxBSD::alert(const String &p_alert, const String &p_title) {
 	String program;
 
-	if (desktop == "GNOME")
+	if (desktop == "GNOME") {
 		program = "zenity";
-	else if (desktop == "KDE")
+	} else if (desktop == "KDE") {
 		program = "kdialog";
-	else
+    } else {
 		program = "xmessage";
+	}
 
 	List<String> args;
 

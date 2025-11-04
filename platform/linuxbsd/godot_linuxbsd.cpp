@@ -76,9 +76,9 @@ int main(int argc, char *argv[]) {
 		std::string desktop = getenv("XDG_SESSION_DESKTOP");
 		int ret;
 
-		if (desktop == "GNOME")
+		if (desktop == "GNOME") {
 			ret = system("zenity --warning --title \"Godot Engine\" --text \"A CPU with SSE4.2 instruction set support is required.\" 2> /dev/null");
-		else if (desktop == "KDE") {
+		} else if (desktop == "KDE") {
 			ret = system("kdialog --title \"Godot Engine\" --sorry \"A CPU with SSE4.2 instruction set support is required.\" 2> /dev/null");
 		} else {
 			ret = system("xmessage -center -title \"Godot Engine\" \"A CPU with SSE4.2 instruction set support is required.\" 2> /dev/null");
