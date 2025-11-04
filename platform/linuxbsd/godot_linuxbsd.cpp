@@ -84,6 +84,8 @@ int main(int argc, char *argv[]) {
 			ret = system("xmessage -center -title \"Godot Engine\" \"A CPU with SSE4.2 instruction set support is required.\" 2> /dev/null");
 		}
 
+		ret = ret;
+
 		abort();
 	}
 #endif
