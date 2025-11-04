@@ -94,7 +94,7 @@ void OS_LinuxBSD::alert(const String &p_alert, const String &p_title) {
 	String desktop = getenv("XDG_SESSION_DESKTOP");
 
 	if (desktop == NULL) {
-		program = "xmessage"
+		program = "xmessage";
 	} else {
 		if (desktop == "GNOME") {
 			program = "zenity";
