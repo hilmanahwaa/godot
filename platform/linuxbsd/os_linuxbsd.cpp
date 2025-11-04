@@ -89,26 +89,14 @@
 #endif
 
 void OS_LinuxBSD::alert(const String &p_alert, const String &p_title) {
-	const char *message_programs[] = { "zenity", "kdialog", "Xdialog", "xmessage" };
-
-	String path = get_environment("PATH");
-	Vector<String> path_elems = path.split(":", false);
 	String program;
 
-	for (int i = 0; i < path_elems.size(); i++) {
-		for (uint64_t k = 0; k < std_size(message_programs); k++) {
-			String tested_path = path_elems[i].path_join(message_programs[k]);
-
-			if (FileAccess::exists(tested_path)) {
-				program = tested_path;
-				break;
-			}
-		}
-
-		if (program.length()) {
-			break;
-		}
-	}
+	if (desktop == "GNOME")
+		program = "zenity";
+	else if (desktop == "KDE")
+		program = "kdialog";
+	else
+		program = "xmessage";
 
 	List<String> args;
 
@@ -129,15 +117,6 @@ void OS_LinuxBSD::alert(const String &p_alert, const String &p_title) {
 		args.push_back(p_alert);
 		args.push_back("--title");
 		args.push_back(p_title);
-	}
-
-	if (program.ends_with("Xdialog")) {
-		args.push_back("--title");
-		args.push_back(p_title);
-		args.push_back("--msgbox");
-		args.push_back(p_alert);
-		args.push_back("0");
-		args.push_back("0");
 	}
 
 	if (program.ends_with("xmessage")) {
